@@ -19,6 +19,7 @@ class Cercle():
         self.centre_x = centre_x
         self.centre_y = centre_y
         self.color = (color)
+          
 #Cette ligne est celui qui permet d'afficher les cercles a l'ecran
     def draw(self):
         arcade.draw_circle_filled(self.centre_x, self.centre_y, self.rayon, self.color)
@@ -28,6 +29,7 @@ class MyGame(arcade.Window):
     def __init__(self):
         super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, "Exercice #1")
         self.liste_cercles = []
+          
 #Ces lignes de codes va etre celles qui permettent a nos cercles de se placer differament chaque fois que le code est de nouveau effectuer ET elle va peremttre aussi aux cercles d'avoirs des couleurs aleatoies de notre liste de couleurs et qu'ils ne vont pas depasser les bornes de l'ecran
     def setup(self):
         for _ in range(20):
@@ -37,21 +39,23 @@ class MyGame(arcade.Window):
             color = random.choice(COLORS)
             cercle = Cercle(rayon, center_x, center_y, color)
             self.liste_cercles.append(cercle)
-#
+
     def on_draw(self):
         arcade.start_render()
 
         for cercle in self.liste_cercles:
             cercle.draw()
+          
 #Cette ligne de code est celui qui permet a dectecter la sourris sur l'ecran
     def on_mouse_motion(self, x: int, y: int, dx: int, dy: int):
         self.centre_x = x
         self.centre_y = y
+          
 #Cette ligne de code va faire en sorte que chaque fois une cerle est cliquer, elle va soit disparaitre ou changer de couleur selon notre liste de couleur tout dependament de queele boutton on clique sur la souris
     def on_mouse_press(self, x: int, y: int, button: int, modifiers: int):
 
         for cercle in self.liste_cercles:
-            if x > cercle.centre_x - cercle.rayon and x < cercle.centre_x + cercle.rayon and y > cercle.centre_y - cercle.rayon and y < cercle.centre_y +cercle.rayon:
+            if x > cercle.centre_x - cercle.rayon and x < cercle.centre_x + cercle.rayon and y > cercle.centre_y - cercle.rayon and y < cercle.centre_y + cercle.rayon:
                 if button == arcade.MOUSE_BUTTON_LEFT:
                     self.liste_cercles.remove(cercle)
                 elif button == arcade.MOUSE_BUTTON_RIGHT:
