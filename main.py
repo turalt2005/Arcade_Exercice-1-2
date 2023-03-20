@@ -51,7 +51,7 @@ class MyGame(arcade.Window):
     def on_mouse_press(self, x: int, y: int, button: int, modifiers: int):
 
         for cercle in self.liste_cercles:
-            if x > cercle.centre_x - cercle.rayon and x > cercle.centre_x - cercle.rayon and y > cercle.centre_y - cercle.rayon and y < cercle.centre_y - cercle.rayon:
+            if x > cercle.centre_x - cercle.rayon and x < cercle.centre_x + cercle.rayon and y > cercle.centre_y - cercle.rayon and y < cercle.centre_y +cercle.rayon:
                 if button == arcade.MOUSE_BUTTON_LEFT:
                     self.liste_cercles.remove(cercle)
                 elif button == arcade.MOUSE_BUTTON_RIGHT:
